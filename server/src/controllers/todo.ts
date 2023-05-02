@@ -40,6 +40,16 @@ const addTodo = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+// GET Todo
+const getTodo = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const todo: ITodo | null = await Todo.findById(req.params.id);
+    res.status(200).json({ todo });
+  } catch (error) {
+    throw error;
+  }
+};
+
 // UPDATE todo
 const updateTodo = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -86,4 +96,4 @@ const deleteTodo = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-export { getTodos, addTodo, updateTodo, deleteTodo };
+export { getTodos, addTodo, getTodo, updateTodo, deleteTodo };

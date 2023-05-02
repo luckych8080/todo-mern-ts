@@ -1,7 +1,10 @@
 import { Document } from "mongoose";
 
 export interface ITodo extends Document {
-  name: string;
+  title: string;
   description: string;
-  status: boolean;
+  status: "OPEN" | "WORKING" | "DONE" | "OVERDUE";
+  dueDate?: Date;
+  tag?: string[];
+  timestampCreated: Date;
 }

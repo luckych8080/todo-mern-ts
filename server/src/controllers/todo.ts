@@ -5,7 +5,7 @@ import Todo from "../models/todo";
 // Get All Todo
 const getTodos = async (req: Request, res: Response): Promise<void> => {
   try {
-    const todos: ITodo[] = await Todo.find({ status: false });
+    const todos: ITodo[] = await Todo.find();
     res.status(200).json({ todos });
   } catch (error) {
     throw error;
@@ -15,19 +15,23 @@ const getTodos = async (req: Request, res: Response): Promise<void> => {
 // Add a todo
 const addTodo = async (req: Request, res: Response): Promise<void> => {
   try {
-    const body = req.body as Pick<ITodo, "name" | "description" | "status">;
+    const body = req.body as Pick<
+      ITodo,
+      "title" | "description" | "status" | "tag" | "dueDate"
+    >;
 
     const todo: ITodo = new Todo({
-      name: body.name,
+      title: body.title,
       description: body.description,
       status: body.status,
+      tag: body.tag,
+      dueDate: body.dueDate,
     });
 
     const newTodo: ITodo = await todo.save();
 
     // Response
     const allTodos: ITodo[] = await Todo.find();
-
     res
       .status(201)
       .json({ message: "Todo added", todo: newTodo, todos: allTodos });

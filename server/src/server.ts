@@ -1,5 +1,5 @@
 import express, { Express } from "express";
-import mongoose, { ConnectOptions } from "mongoose";
+import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
 import router from "./routes/todo";
@@ -13,7 +13,7 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(router);
 
-const url: string = "mongodb://127.0.0.1:27017/todos2";
+const url: string = "mongodb://127.0.0.1:27017/todots";
 
 mongoose
   .connect(url)

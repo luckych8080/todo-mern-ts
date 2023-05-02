@@ -9,8 +9,9 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
-    "lib": ["es2017", "dom"]
+    "lib": ["es2017", "dom"],
+    "types": ["@types/express", "@types/cors", "@types/node", "@types/morgan"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

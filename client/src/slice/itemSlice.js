@@ -7,13 +7,24 @@ const initialState = [
     title: "Debug your code",
     description: "ok doki",
     status: false,
+    tag: ["gfi", "level2"],
+    timestampCreated: new Date(),
   },
-  { id: uuid(), title: "Find the bug", description: "ok doki", status: false },
+  {
+    id: uuid(),
+    title: "Find the bug",
+    description: "ok doki",
+    status: false,
+    tag: ["gfi", "level1"],
+    timestampCreated: new Date(),
+  },
   {
     id: uuid(),
     title: "Commit your code",
     description: "ok doki",
     status: false,
+    tag: ["gfi", "level3"],
+    timestampCreated: new Date(),
   },
 ];
 
@@ -22,12 +33,16 @@ const itemSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
-      const item = {
+      let item = {
         id: uuid(),
         title: action.payload.title,
         description: action.payload.description,
-        status: false,
+        status: action.payload.status,
+        timestampCreated: new Date(),
       };
+      if (action.payload.dueDate)
+        item = { ...item, dueDate: action.payload.dueDate };
+      if (action.payload.tag) item = { ...item, tag: action.payload.tag };
       state.push(item);
     },
     toggleStatus: (state, action) => {

@@ -13,9 +13,8 @@ const todoSchema: Schema = new Schema({
     maxlength: 1000,
   },
   status: {
-    type: String,
-    enum: ["OPEN", "WORKING", "DONE", "OVERDUE"],
-    default: "OPEN",
+    type: Boolean,
+    default: "false",
     required: true,
   },
   dueDate: {

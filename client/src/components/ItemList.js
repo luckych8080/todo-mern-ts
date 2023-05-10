@@ -11,8 +11,10 @@ const ItemList = () => {
           key={item.id}
           id={item.id}
           title={item.title}
-          description={item.description}
+          description={item.description ? item.description : null}
           status={item.status}
+          timestampCreated={item.timestampCreated ? item.timestampCreated : null}
+          tag={item.tag ? item.tag : null}
         />
       ))}
     </ul>
